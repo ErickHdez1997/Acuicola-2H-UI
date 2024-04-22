@@ -9,7 +9,7 @@ import { LoginComponent } from './login/login.component';
   template: `
   <main>
     <header class="brand-name">
-      <img class="brand-logo" src="/assets/logo.svg" alt="logo" aria-hidden="true">
+      <img class="brand-logo" src="/assets/32px-Fish.png" alt="logo" aria-hidden="true">
     </header>
     <section class="content">
       <app-login></app-login>
