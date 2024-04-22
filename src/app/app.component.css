@@ -1,0 +1,23 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  margin: 0; /* Remove default margin */
+}
+
+h1 {
+  font-family: 'Arial', sans-serif; /* You can choose a font that's available or import one */
+  font-size: 2.5rem; /* Adjust size as needed */
+  color: #333; /* A dark gray for modernity, but not as harsh as black */
+  letter-spacing: 0.05em; /* Spacing out letters for a more open feel */
+  text-transform: uppercase; /* Uppercase letters for a design touch */
+  font-weight: bold; /* Bold font for prominence */
+  margin: 20px; /* Add margin to the bottom */
+  text-align: center; /* Center align the text if not already centered */
+}
+
+.center-div {
+  text-align: center;
+  margin: 0px;
+}
