@@ -24,7 +24,6 @@ export class LoginComponent {
   }
 
   login() {
-    //Call API
     if(this.loginForm.invalid) return;
 
     alert('Calling backend to login');
@@ -32,9 +31,9 @@ export class LoginComponent {
     const username = this.loginForm.value.email;
     const password = this.loginForm.value.password;
 
-    this.loginService.login(username, password).subscribe((result: boolean) => {
-      this.getData = result;
-    })
+    //this.loginService.login(username, password).subscribe((result: boolean) => {
+    //  this.getData = result;
+    //})
 
     if(this.getData) {
       this.router.navigate(["/home/"]);

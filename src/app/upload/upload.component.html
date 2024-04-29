@@ -1,0 +1,11 @@
+<form [formGroup]="uploadFileForm" (submit)="upload()">
+    <div class="form-control">
+        <label for="numberOfLines">Number of Days</label>
+        <input formControlName="numberOfLines" id="numberOfLines" type="number" />
+    </div>
+    <div>
+        <label for="formFile" class="form-label">Upload Excel File</label>
+        <input (change)="this.onFilechange($event)" formControlName="file" type="file" id="file">
+    </div>
+    <button type="submit">Upload &#8594;</button>
+</form>
