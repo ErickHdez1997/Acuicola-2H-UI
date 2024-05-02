@@ -12,29 +12,25 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
+  constructor(private loginService: LoginService, private router: Router) {}
+
   model: any = {};
   getData: boolean = false;
-
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
   });
 
-  constructor(private loginService: LoginService, private router: Router) {
-  }
+  
 
   login() {
     if(this.loginForm.invalid) return;
-
     alert('Calling backend to login');
-
     const username = this.loginForm.value.email;
     const password = this.loginForm.value.password;
-
     //this.loginService.login(username, password).subscribe((result: boolean) => {
     //  this.getData = result;
     //})
-
     if(this.getData) {
       this.router.navigate(["/home/"]);
     } else {

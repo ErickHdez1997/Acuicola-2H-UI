@@ -1,11 +1,12 @@
 <form [formGroup]="uploadFileForm" (submit)="upload()">
-    <div class="form-control">
-        <label for="numberOfLines">Number of Days</label>
-        <input formControlName="numberOfLines" id="numberOfLines" type="number" />
+    <div class="form-control checkbox-container">
+        <label for="sendEmail">Send Email</label>
+        <input formControlName="sendEmail" id="sendEmail" type="checkbox"  />
     </div>
     <div>
         <label for="formFile" class="form-label">Upload Excel File</label>
-        <input (change)="this.onFilechange($event)" formControlName="file" type="file" id="file">
+        <input (change)="this.onFileChange($event)" formControlName="file" type="file" id="file" accept=".xlsx">
     </div>
-    <button type="submit">Upload &#8594;</button>
+    <button type="submit" [disabled]="isLoading">Analyze File &#8594;</button>
+    <div *ngIf="isLoading" class="loader"></div>
 </form>

@@ -1,43 +1,74 @@
 import { Component } from '@angular/core';
-import { UploadService } from '../services/upload.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { UploadService } from '../services/upload.service';
 
 @Component({
   selector: 'app-upload',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './upload.component.html',
-  styleUrl: './upload.component.css'
+  styleUrls: ['./upload.component.css']
 })
 export class UploadComponent {
 
-  file: File = null as any;
- 
-  constructor(private uploadService: UploadService){
-  
-  }
-
+  isLoading = false;
   uploadFileForm = new FormGroup({
-    numberOfLines: new FormControl('', Validators.required),
-    file: new FormControl('', Validators.required),
+    sendEmail: new FormControl(true, Validators.required),
+    file: new FormControl<File | null>(null, [Validators.required, this.fileValidator])
   });
-  
-  onFilechange(event: any) {
-    console.log(event.target.files[0])
-    this.file = event.target.files[0]
-  }
-  
-  upload() {
-    if (this.uploadFileForm.invalid) return;
-    alert('Document is being processed!');
-    console.log(this.uploadFileForm.value.numberOfLines);
-    console.log(this.file);
-    if (this.file) {
-      this.uploadService.uploadfile(this.file).subscribe(resp => {
-        alert("Uploaded")
-      })
+
+  constructor(private uploadService: UploadService) {}
+
+  onFileChange(event: Event) {
+    const element = event.target as HTMLInputElement;
+    const fileList = element.files;
+    if (fileList && fileList.length > 0) {
+        const file = fileList[0];
+        const extension = file.name.split('.').pop()?.toLowerCase();
+        if (extension !== 'xlsx') {
+            alert('Only .xlsx files are allowed!');
+            element.value = ''; // Correctly reset the input only if file is not .xlsx
+        } else {
+            this.uploadFileForm.get('file')!.setValue(file);
+        }
     } else {
-      alert("Please select a file first")
+        // If no file is selected (e.g., if the user cancels the file picker), you may reset the form control
+        this.uploadFileForm.get('file')!.setValue(null);
     }
+}
+
+  fileValidator(control: FormControl): { [key: string]: any } | null {
+    const file = control.value as File | null;
+    if (file?.name) { // Ensure file and file.name are defined
+        const parts = file.name.split('.');
+        const extension = parts.pop();
+        if (extension && extension.toLowerCase() !== 'xlsx') {
+            return { wrongFileType: true };
+        }
+    }
+    return null;
+}
+
+  upload() {
+    if (this.uploadFileForm.invalid) {
+      alert('Please fix the errors before uploading.');
+      return;
+    }
+    this.isLoading = true;
+    const file = this.uploadFileForm.get('file')!.value as File;
+    const sendEmail = this.uploadFileForm.get('sendEmail')!.value as boolean;
+    console.log(file);
+    console.log(sendEmail);
+    this.uploadService.uploadfile(file, sendEmail).subscribe({
+      next: () => {
+        alert("Uploaded successfully!");
+        this.isLoading = false;
+      },
+      error: (error) => {
+        alert("Upload failed: " + error);
+        this.isLoading = false;
+      }
+    });
   }
 }

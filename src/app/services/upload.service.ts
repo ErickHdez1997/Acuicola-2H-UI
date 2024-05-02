@@ -10,9 +10,10 @@ export class UploadService {
     private httpClient: HttpClient,
   ) { }
   
-  public uploadfile(file: File) {
+  public uploadfile(file: File, sendEmail: boolean) {
     let formParams = new FormData();
-    formParams.append('file', file)
-    return this.httpClient.post('http://localhost:8080/monitor/upload', formParams)
+    formParams.append('file', file);
+    formParams.append('sendEmail', String(sendEmail))
+    return this.httpClient.post('http://localhost:8080/monitor/processFile', formParams)
   }
 }
