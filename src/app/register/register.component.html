@@ -1,0 +1,41 @@
+<form [formGroup]="registerForm" (submit)="register()">
+    <h1>Login</h1>
+    <div class="form-control">
+        <label for="text">First Name</label>
+        <input formControlName="firstName" id="firstName" autocomplete="name" type="text" />
+        <div *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
+            First name is required
+          </div>
+    </div>
+    <div class="form-control">
+        <label for="text">Last Name</label>
+        <input formControlName="lastName" id="lastName" autocomplete="name" type="text" />
+        <div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
+            Last name is required
+          </div>
+    </div>
+    <div class="form-control">
+        <label for="text">Email</label>
+        <input formControlName="email" id="email" autocomplete="email" type="email" />
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+            Email is required
+          </div>
+    </div>
+    <div class="form-control">
+        <label for="text">Username</label>
+        <input formControlName="username" id="username" autocomplete="username" type="text" />
+        <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+            Username is required
+          </div>
+    </div>
+    <div class="form-control">
+        <label for="password">Password</label>
+        <input formControlName="password" id="password" autocomplete="new-password" type="password" />
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+            Password is required
+          </div>
+    </div>
+    <button type="submit" [disabled]="registerForm.invalid">Register &#8594;</button>
+    <button (click)="login()">Login</button>
+    <div *ngIf="errorMessage">{{ errorMessage }}</div>
+</form>

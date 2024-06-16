@@ -41,4 +41,8 @@ export class LoginComponent {
       this.errorMessage = 'Invalid username or password';
     }
   }
+
+  navigateToRegister(){
+    this.router.navigate(['/register']);
+  }
 }

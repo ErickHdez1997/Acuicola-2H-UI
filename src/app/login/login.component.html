@@ -15,5 +15,6 @@
           </div>
     </div>
     <button type="submit" [disabled]="loginForm.invalid">Login &#8594;</button>
+    <button (click)="navigateToRegister()">Register</button>
     <div *ngIf="errorMessage">{{ errorMessage }}</div>
 </form>
