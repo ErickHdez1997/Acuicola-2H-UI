@@ -1,1 +1,11 @@
-<p>create-tank works!</p>
+<h2>Create Tank</h2>
+<form [formGroup]="createTankForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Tank Name</label>
+    <input id="name" formControlName="name">
+  </div>
+  <div>
+    <button type="submit" [disabled]="!createTankForm.valid">Create</button>
+    <button type="button" (click)="onClose()">Cancel</button>
+  </div>
+</form>

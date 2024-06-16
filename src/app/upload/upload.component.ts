@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UploadService } from '../services/upload.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.css']
+  styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent {
 
@@ -18,7 +19,7 @@ export class UploadComponent {
     file: new FormControl<File | null>(null, [Validators.required, this.fileValidator])
   });
 
-  constructor(private uploadService: UploadService) {}
+  constructor(private uploadService: UploadService, private router: Router) {}
 
   onFileChange(event: Event) {
     const element = event.target as HTMLInputElement;
@@ -70,5 +71,9 @@ export class UploadComponent {
         this.isLoading = false;
       }
     });
+  }
+
+  navigateToHome() {
+    this.router.navigate(['/home']);
   }
 }
