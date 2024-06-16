@@ -1,12 +1,19 @@
 <form [formGroup]="loginForm" (submit)="login()">
     <h1>Login</h1>
     <div class="form-control">
-        <label for="email">Email</label>
-        <input formControlName="email" id="email" autocomplete="email" type="email" />
+        <label for="text">Username</label>
+        <input formControlName="username" id="username" autocomplete="username" type="text" />
+        <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+            Username is required
+          </div>
     </div>
     <div class="form-control">
         <label for="password">Password</label>
         <input formControlName="password" id="password" autocomplete="new-password" type="password" />
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            Password is required
+          </div>
     </div>
-    <button type="submit">Login &#8594;</button>
+    <button type="submit" [disabled]="loginForm.invalid">Login &#8594;</button>
+    <div *ngIf="errorMessage">{{ errorMessage }}</div>
 </form>

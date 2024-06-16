@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {} from '@angular/common/http';
+import { RouterOutlet, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { UploadComponent } from "./upload/upload.component";
@@ -13,11 +12,7 @@ import { UploadComponent } from "./upload/upload.component";
     imports: [
         RouterOutlet,
         LoginComponent,
-        
-// TODO: `HttpClientModule` should not be imported into a component directly.
-// Please refactor the code to add `provideHttpClient()` call to the provider list in the
-// application bootstrap logic and remove the `HttpClientModule` import from this component.
-HttpClientModule,
+        RouterModule,
         UploadComponent
     ]
 })

@@ -1,40 +1,45 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LoginService } from '../services/login.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  loginForm: FormGroup;
+  errorMessage = '';
+
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
 
   model: any = {};
   getData: boolean = false;
-  loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required),
-  });
-
-  
 
   login() {
     if(this.loginForm.invalid) return;
+    
+    // Remove this later
     alert('Calling backend to login');
-    const username = this.loginForm.value.email;
+    // Remove this later
+
+    const username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
-    //this.loginService.login(username, password).subscribe((result: boolean) => {
-    //  this.getData = result;
-    //})
-    if(this.getData) {
-      this.router.navigate(["/home/"]);
+    if (this.authService.login(username, password)) {
+      this.router.navigate(['/home']);
     } else {
-      alert("Invalid username/password");
+      this.errorMessage = 'Invalid username or password';
     }
   }
 }
