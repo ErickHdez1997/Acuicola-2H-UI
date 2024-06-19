@@ -4,15 +4,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { appRoutingProviders } from './app/app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { AuthService } from './app/services/auth.service';
-import { importProvidersFrom } from '@angular/core';
+import { Provider, importProvidersFrom } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { TokenService } from './app/services/token.service';
 
 bootstrapApplication(AppComponent, 
   {
     providers: [
       appRoutingProviders,
       provideHttpClient(),
+      provideJwtHelper(),
       importProvidersFrom(
         MatDialogModule,
         BrowserAnimationsModule,
@@ -22,3 +25,11 @@ bootstrapApplication(AppComponent,
     ]
   })
   .catch((err) => console.error(err));
+
+  function provideJwtHelper(): Provider[] {
+    return [
+      { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+      JwtHelperService
+    ];
+  }
+

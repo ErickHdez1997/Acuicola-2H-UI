@@ -32,13 +32,20 @@ export class LoginComponent {
   getData: boolean = false;
 
   login() {
-    if(this.loginForm.invalid) return;
-    const username = this.loginForm.value.username;
-    const password = this.loginForm.value.password;
-    if (this.authService.login(username, password)) {
-      this.router.navigate(['/home']);
-    } else {
-      this.errorMessage = 'Invalid username or password';
+    if (this.loginForm.valid) {
+      this.authService.login(this.loginForm.value).subscribe({
+        next: response => {
+          console.log('User authenticated successfully', response);
+          localStorage.setItem('token', response);
+        },
+        error: (error: any) => {
+          console.error('Error authenticating user', error);
+        },
+        complete: () => {
+          console.log('Authentication process completed');
+          this.router.navigate(['/home']);
+        }
+      });
     }
   }
 

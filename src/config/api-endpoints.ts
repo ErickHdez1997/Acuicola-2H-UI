@@ -6,7 +6,7 @@ export const API_ENDPOINTS = {
     },
     USERS: {
       REGISTER: 'http://localhost:8080/api/users/register',
-      LOGIN: 'http://localhost:8080/api/users/login',
+      LOGIN: 'http://localhost:8080/api/auth/login',
       // Add other user-related endpoints here
     },
     PRODUCTS: {

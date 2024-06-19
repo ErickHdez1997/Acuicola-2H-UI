@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { API_ENDPOINTS } from '../../config/api-endpoints';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -8,15 +11,10 @@ export class AuthService {
 
   private isAuthenticated = false;
 
-  constructor(private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
-  login(username: string, password: string): boolean {
-    // Replace with real authentication logic
-    if (username === 'username' && password === 'password') {
-      this.isAuthenticated = true;
-      return true;
-    }
-    return false;
+  login(credentials: {username: string, password: string}): Observable<any> {
+    return this.http.post<any>(API_ENDPOINTS.USERS.LOGIN, credentials);
   }
 
   logout(): void {
