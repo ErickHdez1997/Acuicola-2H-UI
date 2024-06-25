@@ -12,6 +12,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
+    //return true;
     const token = localStorage.getItem('token');
     if (token && !this.tokenService.isTokenExpired(token)) {
       // Optionally, decode the token and perform further checks (e.g., roles)

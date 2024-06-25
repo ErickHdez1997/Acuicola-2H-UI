@@ -3,7 +3,6 @@ import { RouterOutlet, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { UploadComponent } from "./upload/upload.component";
-import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
 
 @Component({
     selector: 'app-root',

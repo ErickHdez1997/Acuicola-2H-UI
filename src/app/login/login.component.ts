@@ -35,14 +35,12 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: response => {
-          console.log('User authenticated successfully', response);
-          localStorage.setItem('token', response);
+          localStorage.setItem('token', response.token);
         },
         error: (error: any) => {
           console.error('Error authenticating user', error);
         },
         complete: () => {
-          console.log('Authentication process completed');
           this.router.navigate(['/home']);
         }
       });

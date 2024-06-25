@@ -9,6 +9,7 @@ export class TokenService {
   constructor(private jwtHelper: JwtHelperService) { }
 
   isTokenExpired(token: string): boolean {
+    console.log("JWT: "+token)
     return this.jwtHelper.isTokenExpired(token);
   }
 

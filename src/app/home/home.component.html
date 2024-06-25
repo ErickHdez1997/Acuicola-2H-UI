@@ -1,9 +1,37 @@
 <div class="horizontal-bar">
   <button (click)="openCreateTankDialog()">Create Tank</button>
+  <button (click)="createTestData()">Create Test Data</button>
   <button (click)="navigateToUpload()">Upload Document</button>
 </div>
 
 <!-- Placeholder for main content of the home component -->
+<div>
+  <h2>Active Batches</h2>
+  <ul>
+    <li *ngFor="let batch of activeBatches" (click)="selectBatch(batch.id)">
+      Batch ID: {{ batch.id }} - Fish Tank: TBD - Start Date: {{ batch.startDate }}
+    </li>
+  </ul>
+
+  <div *ngIf="selectedBatch">
+    <h3>Batch Details</h3>
+    <p>Batch ID: {{ selectedBatch.id }}</p>
+    <!-- <p>Fish Tank: {{ selectedBatch.fishTank.name }}</p> -->
+    <p>Start Date: {{ selectedBatch.startDate }}</p>
+    <p>End Date: {{ selectedBatch.endDate }}</p>
+    <p>In Progress: {{ selectedBatch.inProgress }}</p>
+    <p>Fish Planted: {{ selectedBatch.fishPlanted }}</p>
+    <p>Fish Yield: {{ selectedBatch.fishYield }}</p>
+
+    <h4>Measurements</h4>
+    <ul>
+      <li *ngFor="let measurement of selectedBatch.measurements">
+        Date: {{ measurement.date }} - Oxygen: {{ measurement.oxygen }} - pH: {{ measurement.pH }} - Temperature: {{ measurement.temperature }}
+        <!-- Add more fields as needed -->
+      </li>
+    </ul>
+  </div>
+</div>
 <div>
   <h2>Welcome to the Home Page!</h2>
   <button (click)="logout()">Logout</button>

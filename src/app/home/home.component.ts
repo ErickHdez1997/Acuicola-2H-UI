@@ -3,17 +3,43 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
 import { CreateTankComponent } from '../create-tank/create-tank.component';
 import { Router } from '@angular/router';
+import { Batch } from '../Interfaces/batch';
+import { BatchService } from '../services/batch.service';
+import { CommonModule } from '@angular/common';
+import { TankMeasurement } from '../Interfaces/tank-measurement';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
 
-  constructor(private authService: AuthService, private dialog: MatDialog, private router: Router) {}
+  activeBatches: Batch[] = [];
+  selectedBatch: Batch | null = null;
+
+  constructor(
+    private authService: AuthService, 
+    private batchService: BatchService,
+    private dialog: MatDialog, 
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.batchService.getActiveBatches().subscribe((batches: Batch[]) => {
+      console.log(batches)
+      this.activeBatches = batches;
+    });
+  }
+
+  selectBatch(batchId: number): void {
+    this.batchService.getBatchById(batchId).subscribe((batch: Batch | null) => {
+      console.log(batch)
+      this.selectedBatch = batch;
+    });
+  }
 
   openCreateTankDialog() {
     const dialogRef = this.dialog.open(CreateTankComponent, {
@@ -34,4 +60,9 @@ export class HomeComponent {
   logout() {
     this.authService.logout();
   }
+
+  createTestData() {
+    this.batchService.createTestData().subscribe((tankMeasurements: TankMeasurement[] | null) => 
+      console.log(tankMeasurements)
+    )}
 }
