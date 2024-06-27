@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" (submit)="login()">
+<!-- <form [formGroup]="loginForm" (submit)="login()">
     <h1>Login</h1>
     <div class="form-control">
         <label for="text">Username</label>
@@ -17,4 +17,29 @@
     <button type="submit" [disabled]="loginForm.invalid">Login &#8594;</button>
     <button (click)="navigateToRegister()">Register</button>
     <div *ngIf="errorMessage">{{ errorMessage }}</div>
-</form>
+</form> -->
+<div>
+    <mat-card class="login-card">
+        <mat-card-title>Login</mat-card-title>
+        <mat-card-content>
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <mat-form-field appearance="fill">
+              <mat-label>Username</mat-label>
+              <input matInput formControlName="username" required>
+              <mat-error *ngIf="loginForm.get('username').hasError('required')">
+                Username is required
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" formControlName="password" required>
+              <mat-error *ngIf="loginForm.get('password').hasError('required')">
+                Password is required
+              </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
+            <button (click)="navigateToRegister()">Register</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+</div>
