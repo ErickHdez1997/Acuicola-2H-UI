@@ -1,44 +1,29 @@
-form {
-    max-width: 400px;
-    margin: 80px auto;
-    padding: 16px 16px 24px;
-    box-shadow: - 2px 32px rgba(0, 0, 0, 0.15);
-    border-radius: 4px;
-}
+mat-card {
+    max-width: 600px;
+    margin: 2em auto;
+    text-align: center;
+    max-height: 600px;
 
-h1 {
-    margin-top: 0;
-    color: #555;
-    padding-bottom: 4px;
-    border-bottom: 1px solid #ccc;
-}
+    .header {
+      text-align: center;
+    }
+    
+    .full-width {
+      width: 80%;
+    }
+    
+    .forgot-password {
+      padding-left: 0px;
+    }
+    
+    .username-input {
+      padding-top: 10px;
+    }
+    
+    .aLink {
+      float: right;
+      padding-right: 60px;
+      text-decoration: none;
+    }
 
-.form-control {
-    margin-bottom: 16px;
-    input, 
-    label {
-        display: block;
-    }
-    label {
-        font-size:  0.9rem;
-        font-weight: 500;
-        margin-bottom: 4px;
-    }
-    input {
-        padding: 8px;
-        height: 24px;
-        border-radius: 4px;
-        width: 100%;
-        border: 2px solid #ccc;
-        background-color: white;
-    }
-}
-
-button {
-    background-color: #000;
-    color: #fff;
-    padding:  8px 24px;
-    border-radius: 4px;
-    width: 100%;
-    font-size: 1.2rem;
 }

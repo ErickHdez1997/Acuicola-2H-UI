@@ -1,56 +1,30 @@
 /* login.component.css */
 
-.login-card {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #e3f2fd; /* Light blue background */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .mat-card-title {
-    text-align: center;
-    font-size: 24px;
-    color: #0d47a1; /* Darker blue color */
-  }
-  
-  .mat-form-field {
-    width: 100%;
-  }
-  
-  .mat-form-field-appearance-fill .mat-form-field-flex {
-    background-color: white; /* White background for input fields */
-  }
-  
-  .mat-form-field-appearance-fill .mat-form-field-underline {
-    background-color: #64b5f6; /* Light blue underline */
-  }
-  
-  .mat-form-field-appearance-fill.mat-focused .mat-form-field-underline {
-    background-color: #0d47a1; /* Darker blue underline when focused */
-  }
-  
-  .mat-form-field-appearance-fill .mat-form-field-label {
-    color: #0d47a1; /* Darker blue label color */
-  }
-  
-  .mat-input-element {
-    color: #0d47a1; /* Darker blue text color */
-  }
-  
-  .mat-error {
-    color: #d32f2f; /* Red color for error messages */
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 20px;
-    background-color: #0d47a1; /* Darker blue button */
-    color: white;
-  }
-  
-  button:hover {
-    background-color: #0b3c8c; /* Darker shade of blue on hover */
-  }
+mat-card {
+  max-width: 600px;
+  margin: 2em auto;
+  text-align: center;
+  max-height: 600px;
+}
+
+.header {
+  text-align: center;
+}
+
+.full-width {
+  width: 80%;
+}
+
+.forgot-password {
+  padding-left: 0px;
+}
+
+.username-input {
+  padding-top: 10px;
+}
+
+.aLink {
+  float: right;
+  padding-right: 60px;
+  text-decoration: none;
+}

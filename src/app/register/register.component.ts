@@ -1,20 +1,36 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+
 import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule, 
+    ReactiveFormsModule,
+    MatFormFieldModule, 
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
   registerForm: FormGroup;
   errorMessage = '';
+
+  hidePassword = true;
+  hideConfirmPassword = true;
 
   constructor(
     private fb: FormBuilder, 
@@ -27,8 +43,21 @@ export class RegisterComponent {
       lastName: ['', Validators.required],
       email: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
+    },
+    {
+      validators: this.passwordMatchValidator,
+    }
+  );
+  }
+
+  passwordMatchValidator(control: AbstractControl) {
+    return control.get('password')?.value === control.get('confirmPassword')?.value ? null : { mismatch : true};
+  }
+
+  isValid(event: any) {
+    console.log(this.registerForm.valid);
   }
 
   register() {

@@ -9,6 +9,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { TokenService } from './app/services/token.service';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 bootstrapApplication(AppComponent, 
   {
@@ -21,7 +22,7 @@ bootstrapApplication(AppComponent,
         BrowserAnimationsModule,
         ReactiveFormsModule
       ),
-      AuthService
+      AuthService, provideAnimationsAsync()
     ]
   })
   .catch((err) => console.error(err));

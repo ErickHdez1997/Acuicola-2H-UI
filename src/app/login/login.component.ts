@@ -61,7 +61,4 @@ export class LoginComponent {
     this.router.navigate(['/register']);
   }
 
-  updateErrorMessage() {
-    if (this.loginForm.get)
-  }
 }

@@ -1,1 +1,394 @@
-/* You can add global styles to this file, and also import other style files */
+// /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-mdc-raised-button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.svg-inline--fa {
+    height: 24px;
+    width: 24px;
+    padding: 12px;
+    box-sizing: content-box;
+    cursor: pointer;
+}
+
+// html,
+// body {
+//     height: 100%;
+//     margin: 0;
+//     font-family: Roboto, "Helvetica Neue", "sans-serif";
+//     min-height: 100%;
+// }
+// main {
+//     display: block;
+//     justify-content: center;
+//     align-items: center;
+//     position: absolute;
+//     width: 100%;
+// }
+
+// .content {
+//     padding: 20px;
+//     text-align: center;
+//     margin: 15px 30px 80px 30px;
+// }
+
+// header {
+//     display: flex;
+//     padding: 16px 24px;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: flex-start;
+//     border-bottom: 1px solid var(--neutral-gray-3-dfdfdf, #dfdfdf);
+//     background: #fff;
+// }
+// footer {
+//     padding-left: 24px;
+//     background: #fff;
+//     position: fixed;
+//     height: 50px;
+//     bottom: 0px;
+//     left: 0px;
+//     right: 0px;
+//     margin-bottom: 0px;
+//     padding-bottom: 16px;
+//     z-index: 15;
+//   }
+  
+//   .justify-content-center {
+//     justify-content: center !important;
+//   }
+  
+//   .d-flex {
+//     display: flex !important;
+//   }
+  
+//   .help-link {
+//     color: var(--status-info-1171-e-6, #1171e6);
+//   }
+  
+//   .btn-prim {
+//     padding: 6px;
+//     height: 100%;
+//     border-radius: 8px;
+//     border: 2px solid var(--primary-red-cc-0000, #cc0000);
+//     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1),
+//       0px 1px 3px 0px rgba(0, 0, 0, 0.1), 2px 2px 3px rgba(0, 0, 0, 0.1),
+//       0px 1px 2px -2px var(--primary-red-cc-0000, #cc0000) inset;
+//     background: var(--primary-red-cc-0000, #cc0000);
+//     color: var(--text-colors-white-ffffff, #ffffff);
+//     text-align: center;
+//     font-feature-settings: "clig" off, "liga" off;
+//     font-size: 14px;
+//     font-style: normal;
+//     font-weight: 700;
+//     cursor: pointer;
+//   }
+  
+//   button.btn-prim:disabled {
+//     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1),
+//       0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px -2px 2px 0px rgba(0, 0, 0, 0.1),
+//       0px 2px 3px -2px #dfdfdf inset;
+//     background-color: #dfdfdf;
+//     color: #767676;
+//     border-color: #dfdfdf;
+//     pointer-events: none !important;
+//   }
+  
+//   .btn-sec {
+//     padding: 6px;
+//     height: 100%;
+//     border-radius: 8px;
+//     border: 2px solid var(--primary-red-cc-0000, #cc0000);
+//     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1),
+//       0px 1px 3px 0px rgba(0, 0, 0, 0.2), 2px 2px 3px rgba(0, 0, 0, 0.1),
+//       0px 1px 2px -2px var(--primary-red-cc-0000, #cc0000) inset;
+//     color: var(--text-colors-red-cc-0000-non-error, #cc0000);
+//     font-feature-settings: "clig" off, "liga" off;
+//     font-size: 14px;
+//     font-style: normal;
+//     font-weight: 700;
+//     line-height: 14px;
+//     background: var(--primary-white-ffffff, #ffffff);
+//     text-align: center;
+//     cursor: pointer;
+//   }
+  
+//   button.btn-sec:disabled {
+//     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1),
+//       0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px -2px 2px 0px rgba(0, 0, 0, 0.1),
+//       0px 2px 3px -2px #dfdfdf inset;
+//     background-color: #dfdfdf;
+//     color: #767676;
+//     border-color: #dfdfdf;
+//     pointer-events: none !important;
+//   }
+  
+//   .btn-tert {
+//     padding: 6px;
+//     height: 100%;
+//     border-radius: 8px;
+//     border: 2px solid var(--primary-red-cc-0000, #cc0000);
+//     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1),
+//       0px 1px 3px 0px rgba(0, 0, 0, 0.2), 2px 2px 3px rgba(0, 0, 0, 0.1),
+//       0px 1px 2px -2px var(--primary-red-cc-0000, #cc0000) inset;
+//     color: var(--text-colors-red-cc-0000-non-error, #cc0000);
+//     font-feature-settings: "clig" off, "liga" off;
+//     font-size: 14px;
+//     font-style: normal;
+//     font-weight: 700;
+//     line-height: 14px;
+//     background: var(--primary-white-ffffff, #ffffff);
+//     text-align: center;
+//     cursor: pointer;
+//   }
+  
+//   button.btn-tert:disabled {
+//     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1),
+//       0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px -2px 2px 0px rgba(0, 0, 0, 0.1),
+//       0px 2px 3px -2px #dfdfdf inset;
+//     background-color: #dfdfdf;
+//     color: #767676;
+//     border-color: #dfdfdf;
+//     pointer-events: none !important;
+//   }
+  
+//   .previous-page {
+//     top: 100px;
+//     left: 10px;
+//     display: flex;
+//     align-items: top;
+//     text-decoration: none;
+//     color: #08315e;
+//     cursor: pointer;
+//   }
+  
+//   u {
+//     margin-left: 5px;
+//   }
+  
+// //   Input Field 
+// * .mdc-text-field--focused .mdc-notched-outline > * {
+//     border-color: #0078ae !important;
+// }
+
+// * .mdc-text-field--invalid .mdc-notched-outline > * {
+//     border-color: #c00 !important;
+// }
+
+// * .mdc-text-field--disabled .mdc-notched-outline > * {
+//     border-color: #dfdfdf !important;
+// }
+  
+//   .mat-mdc-floating-label > * {
+//     color: #767676;
+//   }
+  
+//   .required {
+//     color: #c00;
+//   }
+  
+//   .mat-mdc-form-field {
+//     width: 416px;
+//   }
+  
+//   .mat-mdc-text-field-wrapper {
+//     height: 50px;
+//   }
+  
+//   /* Radio button */
+//   .mat-mdc-radio-button.mat-accent .mdc-radio__disabled-selected-icon-color {
+//     color: #000 !important;
+//   }
+  
+//   .mat-mdc-radio-button.mat-accent .mdc-radio__disabled-unselected-hover-icon-color {
+//     color: #212121 !important;
+//   }
+  
+//   .mat-mdc-radio-button.mat-accent .mdc-radio__unselected-hover-icon-color {
+//     color: #e0e0e0 !important;
+//   }
+  
+//   .mat-mdc-radio-button.mat-accent .mdc-radio__unselected-pressed-icon-color {
+//     color: rgba(0, 0, 0, 0.54) !important;
+//   }
+  
+//   .mat-mdc-radio-button.mat-accent .mdc-radio__unselected-focus-icon-color {
+//     color: rgba(0, 0, 0, 0.38) !important;
+//   }
+  
+//   .mat-mdc-radio-button.mat-accent .mdc-radio__unselected-hover-state-layer-opacity {
+//     opacity: 0.04 !important;
+//   }
+  
+//   .mat-mdc-radio-button.mat-accent .mdc-radio__unselected-ripple-color {
+//     color: rgba(0, 0, 0, 0.38) !important;
+//   }
+  
+//   /* Mat Checkbox */
+//   .mat-mdc-checkbox.mat-primary .mdc-checkbox__selected-focus-icon-color {
+//     color: black !important;
+//   }
+  
+//   .mat-mdc-checkbox.mat-primary .mdc-checkbox__selected-hover-icon-color {
+//     color: black !important;
+//   }
+  
+//   .mat-mdc-checkbox.mat-primary .mdc-checkbox__selected-pressed-icon-color {
+//     color: black !important;
+//   }
+  
+//   .mat-mdc-checkbox.mat-primary .mdc-checkbox__selected-state-layer-color {
+//     color: black !important;
+//   }
+  
+//   .mat-mdc-checkbox.mat-primary .mdc-checkbox__unselected-hover-state-layer-color {
+//     color: black !important;
+//   }
+  
+//   .mat-mdc-checkbox.mat-primary .mdc-checkbox__unselected-pressed-icon-color {
+//     color: black !important;
+//   }
+  
+//   .mat-mdc-checkbox.mat-primary .mdc-checkbox__unselected-pressed-state-layer-color {
+//     color: black !important;
+//   }
+  
+//   .mat-mdc-checkbox.mat-primary .mdc-checkbox__unselected-state-layer-opacity {
+//     opacity: 0.04 !important;
+//   }
+  
+//   .mat-mdc-form-field-error-wrapper {
+//     padding: 0px !important;
+//   }
+  
+//   .password-visibility-icon {
+//     height: 24px;
+//     width: 24px;
+//     padding: 12px;
+//     box-sizing: content-box;
+//     cursor: pointer;
+//   }
+  
+//   .text-danger {
+//     color: #c00;
+//     margin-left: 5px;
+//   }
+
+//   .mat-mdc-form-field-error {
+//     display: flex !important;
+//     margin-top: 5px !important;
+//   }
+  
+//   .circle-icon {
+//     width: 16px;
+//     height: 16px;
+//     vertical-align: middle;
+//     margin-right: 5px;
+//   }
+  
+//   .terms-area-style {
+//     border: 1px solid var(--neutral-gray-3-dfdfdf, #dfdfdf);
+//     background: #fff;
+//   }
+  
+//   .user-icon {
+//     background-color: #f2f2f2;
+//     border-radius: 15px;
+//   }
+  
+//   .close-button {
+//     float: right;
+//     margin-top: 10px;
+//     background: snow;
+//     border: none;
+//     font-size: 1.5em;
+//     cursor: pointer;
+//   }
+  
+//   .content-style-md {
+//     margin: auto !important;
+//     text-align: left !important;
+//     width: 816px !important;
+//     align-items: center !important;
+//   }
+
+//   /* Calendar starts */
+//   .mat-accent .mat-button {
+//     color: #cc0000 !important;
+//     background-color: #f2f2f2 !important;
+//   }
+  
+//   .mat-calendar-body-cell-hover .mat-calendar-body-cell-content {
+//     background-color: rgb(252, 214, 214) !important;
+//   }
+  
+//   .mat-calendar-controls .mat-mdc-icon-button .mat-mdc-button-base {
+//     background-color: #f2f2f2 !important;
+//     margin-right: 5px;
+//   }
+  
+//   .mat-datepicker-content .mat-calendar-previous-button,
+//   .mat-datepicker-content .mat-calendar-next-button {
+//     color: red !important;
+//   }
+  
+//   .mat-calendar-body-today {
+//     border-color: #cc0000 !important;
+//     background-color: rgb(255, 255, 255) !important;
+//     color: black !important;
+//   }
+  
+//   .mat-calendar-body-selected {
+//     background-color: #cc0000 !important;
+//     color: #f2f2f2 !important;
+//     border: none !important;
+//   }
+  
+//   .mat-calendar-arrow {
+//     fill: #f2f2f2 !important;
+//   }
+  
+//   .mat-datepicker-content .mat-mdc-icon-button:disabled {
+//     color: #6c6c6c !important;
+//   }
+//   /* Calendar ends */
+  
+// //   @import "~bootstrap-timepicker/css/bootstrap-timepicker.min.css";
+  
+// //   .bootstrap-timepicker-widget table td input {
+// //     width: 30px;
+// //     margin: 0;
+// //     text-align: center;
+// //     border: none;
+// //   }
+  
+// //   .glyphicon {
+// //     position: relative;
+// //     top: 1px;
+// //     display: inline-block;
+// //     //font-family: "Glyphicons Halflings";
+// //     font-style: normal;
+// //     font-weight: 400;
+// //     line-height: 1;
+// //     -webkit-font-smoothing: antialiased;
+// //     -moz-osx-font-smoothing: grayscale;
+// //   }
+  
+// //   .glyphicon-chevron-up:before {
+// //     content: "\2227";
+// //   }
+  
+// //   .glyphicon-chevron-down:before {
+// //     content: "\2228";
+// //   }
+  
+// //   .form-control:focus {
+// //     box-shadow: 0 0 0 0 rem;
+// //   }
+  
+
