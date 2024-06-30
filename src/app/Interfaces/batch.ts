@@ -3,7 +3,7 @@ import { TankMeasurement } from "./tank-measurement";
 
 export interface Batch {
     id: number;
-    fishTank: FishTank;
+    fishTankId: number;
     startDate: string;
     endDate: string;
     inProgress: boolean;

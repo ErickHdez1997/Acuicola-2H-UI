@@ -3,10 +3,39 @@
     justify-content: space-between;
     background-color: #f8f8f8;
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);;
   }
   
   .horizontal-bar button {
     padding: 10px 20px;
     font-size: 16px;
+  }
+
+  .button-list {
+    list-style-type: none; /* Remove default list styles */
+  padding: 0; /* Remove default padding */
+  display: flex; /* Use flexbox for layout */
+  flex-wrap: wrap; /* Wrap items to next row if needed */
+  gap: 10px; /* Adjust spacing between buttons */
+  }
+
+  .header-row {
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .mat-elevation-z8 {
+    border-radius: 10px;
+  }
+  
+  .rounded-table {
+    border-radius: 10px 10px 0 0;
+    overflow: hidden; /* Ensure the table corners are visible */
+  }
+
+  .rounded-paginator {
+    border-radius: 0 0 10px 10px;
+    overflow: hidden; /* Ensure the table corners are visible */
   }

@@ -26,6 +26,7 @@ export class LoginComponent {
 
   loginForm: FormGroup;
   errorMessage = '';
+  hidePassword = true;
 
   constructor(
     private fb: FormBuilder, 

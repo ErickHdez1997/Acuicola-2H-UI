@@ -1,38 +1,77 @@
 <div class="horizontal-bar">
-  <button (click)="openCreateTankDialog()">Create Tank</button>
-  <button (click)="createTestData()">Create Test Data</button>
-  <button (click)="navigateToUpload()">Upload Document</button>
+  <button mat-raised-button color="primary" (click)="openCreateTankDialog()">Create Tank</button>
+  <button mat-raised-button color="primary" (click)="createTestData()">Create Test Data</button>
+  <button mat-raised-button color="primary" (click)="navigateToUpload()">Upload Document</button>
+  <button mat-raised-button color="primary" (click)="logout()">Logout</button>
 </div>
 
 <!-- Placeholder for main content of the home component -->
 <div>
   <h2>Active Batches</h2>
-  <ul>
-    <li *ngFor="let batch of activeBatches" (click)="selectBatch(batch.id)">
-      Batch ID: {{ batch.id }} - Fish Tank: TBD - Start Date: {{ batch.startDate }}
-    </li>
+  <ul class="button-list">
+    <button mat-raised-button color="primary" *ngFor="let batch of activeBatches" (click)="selectBatch(batch.id)">
+      Tank #: {{batch.fishTankId}} - Batch ID: {{ batch.id }} - Start Date: {{ batch.startDate.substring(0, 10) }}
+    </button>
   </ul>
-
-  <div *ngIf="selectedBatch">
-    <h3>Batch Details</h3>
-    <p>Batch ID: {{ selectedBatch.id }}</p>
-    <!-- <p>Fish Tank: {{ selectedBatch.fishTank.name }}</p> -->
-    <p>Start Date: {{ selectedBatch.startDate }}</p>
-    <p>End Date: {{ selectedBatch.endDate }}</p>
-    <p>In Progress: {{ selectedBatch.inProgress }}</p>
-    <p>Fish Planted: {{ selectedBatch.fishPlanted }}</p>
-    <p>Fish Yield: {{ selectedBatch.fishYield }}</p>
-
-    <h4>Measurements</h4>
-    <ul>
-      <li *ngFor="let measurement of selectedBatch.measurements">
-        Date: {{ measurement.date }} - Oxygen: {{ measurement.oxygen }} - pH: {{ measurement.pH }} - Temperature: {{ measurement.temperature }}
-        <!-- Add more fields as needed -->
-      </li>
-    </ul>
-  </div>
 </div>
-<div>
-  <h2>Welcome to the Home Page!</h2>
-  <button (click)="logout()">Logout</button>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort class="rounded-table">
+    <ng-container matColumnDef="title">
+      <th class="header-row" mat-header-cell colspan="12" *matHeaderCellDef> Tank #{{ selectedBatch?.fishTankId }} </th>
+    </ng-container>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Entry Id </th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="oxygen">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Oxygen </th>
+      <td mat-cell *matCellDef="let row"> {{row.oxygen}} </td>
+    </ng-container>
+    <ng-container matColumnDef="temperature">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Temperature </th>
+      <td mat-cell *matCellDef="let row"> {{row.temperature}} </td>
+    </ng-container>
+    <ng-container matColumnDef="ph">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> PH </th>
+      <td mat-cell *matCellDef="let row"> {{row.ph}} </td>
+    </ng-container>
+    <ng-container matColumnDef="salinity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Salinity </th>
+      <td mat-cell *matCellDef="let row"> {{row.salinity}} </td>
+    </ng-container>
+    <ng-container matColumnDef="nitrate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nitrate </th>
+      <td mat-cell *matCellDef="let row"> {{row.nitrate}} </td>
+    </ng-container>
+    <ng-container matColumnDef="nitrite">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nitrite </th>
+      <td mat-cell *matCellDef="let row"> {{row.nitrite}} </td>
+    </ng-container>
+    <ng-container matColumnDef="ammonia">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ammonia </th>
+      <td mat-cell *matCellDef="let row"> {{row.ammonia}} </td>
+    </ng-container>
+    <ng-container matColumnDef="turbine">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Turbine </th>
+      <td mat-cell *matCellDef="let row"> {{row.turbine}} </td>
+    </ng-container>
+    <ng-container matColumnDef="alkalinity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> alkalinity </th>
+      <td mat-cell *matCellDef="let row"> {{row.alkalinity}} </td>
+    </ng-container>
+    <ng-container matColumnDef="deaths">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fish Deaths </th>
+      <td mat-cell *matCellDef="let row"> {{row.deaths}} </td>
+    </ng-container>
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date - Time </th>
+      <td mat-cell *matCellDef="let row"> {{row.date.substring(0, 10)}} - {{row.date.substring(11, 19)}} </td>
+    </ng-container>
+    <!-- Data -->
+    <tr mat-header-row *matHeaderRowDef="['title']"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator class="rounded-paginator" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>

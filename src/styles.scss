@@ -8,6 +8,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-right: 10px;
 }
 
+.mat-typography h1 {
+    font-weight: bold;
+    margin-top: 0.5em;
+}
+
+.mat-typography h2 {
+    margin-top: 0.5em;
+}
+
 .svg-inline--fa {
     height: 24px;
     width: 24px;
@@ -15,6 +24,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     box-sizing: content-box;
     cursor: pointer;
 }
+
+// .title {
+//     font-weight: bolder;
+//     margin: .5em;
+//     font-size: larger;
+// }
+
 
 // html,
 // body {
@@ -31,11 +47,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 //     width: 100%;
 // }
 
-// .content {
-//     padding: 20px;
-//     text-align: center;
-//     margin: 15px 30px 80px 30px;
-// }
+.content {
+    padding: 20px;
+    text-align: center;
+    margin: 15px 30px 80px 30px;
+}
 
 // header {
 //     display: flex;

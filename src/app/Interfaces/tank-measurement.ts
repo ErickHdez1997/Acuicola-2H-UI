@@ -1,7 +1,9 @@
 export interface TankMeasurement {
     id: number;
+    batchId: number;
+    fishTankId: number;
     oxygen: number;
-    pH: number;
+    ph: number;
     temperature: number;
     salinity: number;
     nitrate: number;
