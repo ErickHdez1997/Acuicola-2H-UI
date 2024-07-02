@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
 import { UserService } from '../services/user.service';
+import { SpinnerService } from '../common/spinner.service';
 
 @Component({
   selector: 'app-register',
@@ -36,7 +37,8 @@ export class RegisterComponent {
     private fb: FormBuilder, 
     private authService: AuthService, 
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private spinnerService: SpinnerService
   ) {
     this.registerForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -62,22 +64,27 @@ export class RegisterComponent {
 
   register() {
     if (this.registerForm.valid) {
+      this.spinnerService.showSpinner();
       this.userService.registerUser(this.registerForm.value).subscribe({
         next: response => {
           console.log('User registered successfully', response);
         },
         error: error => {
           console.error('Error registering user', error);
+          this.spinnerService.hideSpinner();
         },
         complete: () => {
           console.log('Registration process completed');
           this.router.navigate(['/login']);
+          this.spinnerService.hideSpinner();
         }
       });
     }
   }
 
   login() {
+    this.spinnerService.showSpinner();
     this.router.navigate(['/login']);
+    this.spinnerService.hideSpinner();
   }
 }

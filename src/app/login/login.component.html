@@ -9,7 +9,7 @@
           <mat-label>Username <span class="required"></span></mat-label>
           <input matInput placeholder="Username" formControlName="username" minlength="8" maxlength="16" required>
           <mat-error class="mat-error" 
-          *ngIf="loginForm.get('username').hasError('required')">
+          *ngIf="loginForm.get('username')?.hasError('required')">
             <span class="text-danger">Please enter a username</span>
           </mat-error>
         </mat-form-field>
@@ -25,7 +25,7 @@
             <img class="fa" [ngClass]="{'far fa-eye-slash' : hidePassword, 'far fa-eye' : !hidePassword}">
           </mat-icon>
           <mat-error class="mat-error" 
-          *ngIf="loginForm.get('password').hasError('required')">
+          *ngIf="loginForm.get('password')?.hasError('required')">
             <span class="text-danger">Please enter a password</span>
           </mat-error>
         </mat-form-field>
@@ -33,6 +33,9 @@
       <!-- <div class="content-style">
         <a routerLink="/tbd" routerLinkActive="router-link-active" >Forgot Password?</a>
       </div> -->
+      <div class="text-danger" *ngIf="loginError">
+        {{errorMessage}}
+      </div>
       <div>
         <button mat-raised-button color="primary" [disabled]="!loginForm.valid">Login</button>
         <button mat-raised-button (click)="navigateToRegister()">Register</button>

@@ -3,6 +3,7 @@ import { RouterOutlet, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { UploadComponent } from "./upload/upload.component";
+import { SpinnerComponent } from './common/spinner/spinner.component';
 
 @Component({
     selector: 'app-root',
@@ -13,7 +14,8 @@ import { UploadComponent } from "./upload/upload.component";
         RouterOutlet,
         LoginComponent,
         RouterModule,
-        UploadComponent
+        UploadComponent,
+        SpinnerComponent
     ]
 })
 export class AppComponent {

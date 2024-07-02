@@ -15,7 +15,7 @@
   </ul>
 </div>
 
-<div class="mat-elevation-z8">
+<div class="mat-elevation-z8" *ngIf="showBatchDetails">
   <table mat-table [dataSource]="dataSource" matSort class="rounded-table">
     <ng-container matColumnDef="title">
       <th class="header-row" mat-header-cell colspan="12" *matHeaderCellDef> Tank #{{ selectedBatch?.fishTankId }} </th>

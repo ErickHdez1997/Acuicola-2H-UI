@@ -31,6 +31,7 @@ export class HomeComponent {
 
   activeBatches: Batch[] = [];
   selectedBatch: Batch | null = null;
+  showBatchDetails: boolean = false;
 
   displayedColumns: string[] = ['id', 'oxygen', 'temperature', 'ph', 'salinity', 'nitrate', 'nitrite', 
     'ammonia', 'turbine', 'alkalinity', 'deaths','date'];
@@ -57,7 +58,13 @@ export class HomeComponent {
   }
 
   selectBatch(batchId: number): void {
+    if (this.selectedBatch?.id === batchId) {
+      this.showBatchDetails = false;
+      this.selectedBatch = null;
+      return;
+    }
     this.batchService.getBatchById(batchId).subscribe((batch: Batch | null) => {
+      this.showBatchDetails = true;
       console.log(batch)
       this.selectedBatch = batch;
       this.dataSource = new MatTableDataSource(this.selectedBatch?.measurements);

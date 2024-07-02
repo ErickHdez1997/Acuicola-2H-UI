@@ -15,10 +15,10 @@
 
   .button-list {
     list-style-type: none; /* Remove default list styles */
-  padding: 0; /* Remove default padding */
-  display: flex; /* Use flexbox for layout */
-  flex-wrap: wrap; /* Wrap items to next row if needed */
-  gap: 10px; /* Adjust spacing between buttons */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Wrap items to next row if needed */
+    gap: 10px; /* Adjust spacing between buttons */
   }
 
   .header-row {
