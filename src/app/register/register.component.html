@@ -59,9 +59,9 @@
         <div>
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>Password <span class="required"></span></mat-label>
-            <input matInput placeholder="Password" formControlName="password" [type]="hidePassword ? 'password' : 'text'" minlength="8" maxlength="32" required onpaste="return false">
-            <mat-icon matSuffix (click)="hidePassword = !hidePassword">
-                <img class="fa" [ngClass]="{'far fa-eye-slash' : hidePassword, 'far fa-eye' : !hidePassword}">
+            <input matInput placeholder="Password" formControlName="password" [type]="hidePassword ? 'password' : 'text'" minlength="8" maxlength="32" autocomplete="off" required onpaste="return false">
+            <mat-icon matSuffix (click)="hidePassword = !hidePassword" onkeydown="hidePassword = !hidePassword">
+                <img class="fa" [ngClass]="{'far fa-eye-slash' : hidePassword, 'far fa-eye' : !hidePassword}" alt="">
             </mat-icon>
             <mat-error class="mat-error" 
             *ngIf="registerForm.get('password')?.errors?.['required']">
@@ -81,8 +81,8 @@
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Confirm Password <span class="required"></span></mat-label>
               <input matInput placeholder="Confirm Password" formControlName="confirmPassword" [type]="hideConfirmPassword ? 'password' : 'text'" minlength="8" maxlength="32" (keypress)="isValid($event)" required onpaste="return false">
-              <mat-icon matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">
-                <img class="fa" [ngClass]="{'far fa-eye-slash' : hideConfirmPassword, 'far fa-eye' : !hideConfirmPassword}">
+              <mat-icon matSuffix (click)="hideConfirmPassword = !hideConfirmPassword" onkeydown="hidePassword = !hidePassword">
+                <img class="fa" [ngClass]="{'far fa-eye-slash' : hideConfirmPassword, 'far fa-eye' : !hideConfirmPassword}" alt="">
             </mat-icon>
               <mat-error class="mat-error" 
               *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">

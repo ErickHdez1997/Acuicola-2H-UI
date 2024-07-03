@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { TokenService } from './token.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router, private tokenService: TokenService) { }
+  constructor(
+    private router: Router, 
+    private tokenService: TokenService,
+    private authService: AuthService
+  
+  ) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-    //return true;
     const token = localStorage.getItem('token');
     if (token && !this.tokenService.isTokenExpired(token)) {
       // Optionally, decode the token and perform further checks (e.g., roles)
@@ -20,6 +25,7 @@ export class AuthGuard implements CanActivate {
       console.log('Decoded Token:', decodedToken);
       return true;
     } else {
+      this.authService.setAuthenticatedSubject = false;
       this.router.navigate(['/login']);
       return false;
     }

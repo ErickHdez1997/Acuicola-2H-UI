@@ -54,6 +54,8 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value).subscribe({
         next: response => {
           localStorage.setItem('token', response.token);
+          this.authService.setAuthenticatedSubject = true;
+          
         },
         error: (error: any) => {
           console.error('Error authenticating user', error);
