@@ -35,8 +35,7 @@ export class HomeComponent {
   // To do
   openSummaryComponent() {
     this.router.navigate(['summary'], {relativeTo: this.route});
-  }
-
+  }z
   // To do
   openSettingsComponent() {
     return;
