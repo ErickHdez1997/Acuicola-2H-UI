@@ -3,6 +3,7 @@ import { Batch } from '../Interfaces/batch';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TankMeasurement } from '../Interfaces/tank-measurement';
+import { CreateBatchDto } from '../Interfaces/create-batch-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class BatchService {
 
   getBatchById(batchId: number): Observable<Batch> {
     return this.http.get<Batch>(`${this.apiUrl}/${batchId}`);
+  }
+
+  createBatch(request: CreateBatchDto): Observable<Batch> {
+    return this.http.post<Batch>(`${this.apiUrl}/create`, request);
   }
 
   createTestData(): Observable<TankMeasurement[]> {

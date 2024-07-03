@@ -5,12 +5,14 @@ import { UploadComponent } from './home/upload/upload.component';
 import { AuthGuard } from './services/auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { SummaryComponent } from './home/summary/summary.component';
+import { BatchesComponent } from './home/batches/batches.component';
 
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },{
         path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
+          { path: 'batches', component: BatchesComponent, canActivate: [AuthGuard] },
           { path: 'summary', component: SummaryComponent, canActivate: [AuthGuard] },
           { path: 'upload', component: UploadComponent, canActivate: [AuthGuard] }
         ]

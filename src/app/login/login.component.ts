@@ -14,7 +14,8 @@ import { SpinnerService } from '../common/spinner.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, 
+  imports: [
+    CommonModule, 
     ReactiveFormsModule, 
     MatFormFieldModule, 
     MatInputModule,

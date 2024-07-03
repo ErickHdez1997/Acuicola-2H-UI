@@ -29,13 +29,14 @@ export class HomeComponent {
   }
 
   openManageBatchesComponent() {
-    return;
+    this.router.navigate(['batches'], {relativeTo: this.route});;
   }
 
   // To do
   openSummaryComponent() {
     this.router.navigate(['summary'], {relativeTo: this.route});
-  }z
+  }
+
   // To do
   openSettingsComponent() {
     return;

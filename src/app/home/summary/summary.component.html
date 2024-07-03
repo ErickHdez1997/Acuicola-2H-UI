@@ -1,12 +1,20 @@
-<!-- Placeholder for main content of the home component -->
-<div>
-    <h2>Active Batches</h2>
-    <ul class="button-list">
-      <button mat-raised-button color="primary" *ngFor="let batch of activeBatches" (click)="selectBatch(batch.id)">
-        Tank #: {{batch.fishTankId}} - Batch ID: {{ batch.id }} - Start Date: {{ batch.startDate.substring(0, 10) }}
-      </button>
-    </ul>
+<div class="container">
+  <div class="left-div">
+    <div>
+      <h2>Active Batches</h2>
+      <ul class="button-list">
+        <button mat-raised-button color="primary" *ngFor="let batch of activeBatches" (click)="selectBatch(batch.id)">
+          Tank #: {{batch.fishTankId}} - Batch ID: {{ batch.id }} - Start Date: {{ batch.startDate.substring(0, 10) }}
+        </button>
+      </ul>
+    </div>
   </div>
+  <div class="right-div">
+    <div>Float Column 2</div>
+  </div>
+</div>
+
+<hr class="divider" aria-label="Divider">
   
   <div class="mat-elevation-z8" *ngIf="showBatchDetails">
     <table mat-table [dataSource]="dataSource" matSort class="rounded-table">
