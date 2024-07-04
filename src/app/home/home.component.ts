@@ -5,6 +5,8 @@ import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/rou
 import { BatchService } from '../services/batch.service';
 import { CommonModule } from '@angular/common';
 import { TankMeasurement } from '../Interfaces/tank-measurement';
+import { TankService } from '../services/tank.service';
+import { FishTank } from '../Interfaces/fish-tank';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +24,7 @@ export class HomeComponent {
 
   constructor(
     private authService: AuthService, 
+    private tankService: TankService,
     private batchService: BatchService, 
     private router: Router,
     private route: ActivatedRoute
@@ -50,7 +53,6 @@ export class HomeComponent {
     this.authService.logout();
   }
 
-  // Will Remove
   createTestData() {
     this.batchService.createTestData().subscribe((tankMeasurements: TankMeasurement[] | null) => 
       console.log(tankMeasurements)

@@ -1,16 +1,40 @@
 <div class="container">
-  <div class="left-div">
-    <div>
-      <h2>Active Batches</h2>
-      <ul class="button-list">
-        <button mat-raised-button color="primary" *ngFor="let batch of activeBatches" (click)="selectBatch(batch.id)">
-          Tank #: {{batch.fishTankId}} - Batch ID: {{ batch.id }} - Start Date: {{ batch.startDate.substring(0, 10) }}
+  <div class="left-div" id="leftDiv">
+    <div class="div-header">Tanks</div>
+    <hr class="divider" aria-label="Divider">
+    <div class="grid-container">
+      <ng-container *ngFor="let tank of allFishTanks; let i = index">
+        <button *ngIf="tank.activeBatchId != null" mat-raised-button color="primary" (click)="selectBatch(tank)">
+          Tank #: {{ tank.id }} <br> Batch ID: {{ tank.activeBatchId }}
         </button>
-      </ul>
+        <button *ngIf="tank.activeBatchId == null" mat-raised-button mat-color="primary" disabled>
+          Tank #: {{ tank.id }} <br> Batch ID: NA
+        </button>
+      </ng-container>
     </div>
   </div>
-  <div class="right-div">
-    <div>Float Column 2</div>
+  <div class="right-div" id="rightDiv">
+    <div *ngIf="!showBatchSummary">
+      <div class="div-header">Farm Summary</div>
+      <hr class="divider" aria-label="Divider">
+      <!--Farm Summary Stuff-->
+    </div>
+    <div *ngIf="showBatchSummary">
+      <div class="div-header">Tank Summary</div>
+      <hr class="divider" aria-label="Divider">
+      <!--Tank Summary Stuff-->
+      <div>
+        <h2>Tank #: {{ selectedBatch?.fishTankId }} - Batch #: {{ selectedBatch?.id }}</h2>
+        <p>Batch Start Date: {{ selectedBatch?.startDate }}</p>
+        <p>Fish Planted: {{ selectedBatch?.fishPlanted }}</p>
+        <p>Total Fish Dead: {{ totalFishDeadForSelectedBatch }}</p>
+      </div>
+      <div class="notes">
+        <h3>Notes</h3>
+        <textarea [(ngModel)]="notesForSelectedTank" rows="10" cols="50"></textarea>
+        <button mat-raised-button color="primary" (click)="saveNotes(notesForSelectedTank)">Save Notes</button>
+      </div>
+    </div>
   </div>
 </div>
 
