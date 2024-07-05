@@ -10,8 +10,7 @@ import { TankMeasurement } from '../../Interfaces/tank-measurement';
 import { Batch } from '../../Interfaces/batch';
 import { TankService } from '../../services/tank.service';
 import { FishTank } from '../../Interfaces/fish-tank';
-import { QuillModule } from 'ngx-quill';
-import Quill from 'quill';
+import { Editor, NgxEditorModule, Toolbar } from 'ngx-editor';
 
 @Component({
   selector: 'app-summary',
@@ -23,7 +22,7 @@ import Quill from 'quill';
     MatButtonModule,
     MatSortModule,
     FormsModule,
-    QuillModule
+    NgxEditorModule 
   ],
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.css'
@@ -58,6 +57,19 @@ export class SummaryComponent {
     this.sort = new MatSort;
   }
 
+  editor!: Editor;
+  html = '';
+  // toolbar: Toolbar = [
+  //   ['bold', 'italic'],
+  //   ['underline', 'strike'],
+  //   ['code', 'blockquote'],
+  //   ['ordered_list', 'bullet_list'],
+  //   [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+  //   ['link', 'image'],
+  //   ['text_color', 'background_color'],
+  //   ['align_left', 'align_center', 'align_right', 'align_justify'],
+  // ];
+
   ngOnInit(): void {
     this.tankService.getAllTanks().subscribe((fishTanks: FishTank[]) => {
       console.log(fishTanks)
@@ -69,6 +81,11 @@ export class SummaryComponent {
       console.log(batches[0])
       this.activeBatches = batches;
     });
+    this.editor = new Editor();
+  }
+
+  ngOnDestroy(): void {
+    this.editor?.destroy();
   }
 
   selectBatch(fishTank: FishTank): void {
@@ -127,22 +144,8 @@ export class SummaryComponent {
   }
 
   // Text Box Configuration
-  editorModules = {
-    toolbar: [
-      ['bold', 'italic', 'underline'],        // toggled buttons
-      ['blockquote', 'code-block'],
-      // [{ 'header': 1 }, { 'header': 2 }],      // custom button values
-      // [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-      // [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-      // [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-      // [{ 'direction': 'rtl' }],                         // text direction
-      // [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-      // [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-      // [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-      // [{ 'font': [] }],
-      // [{ 'align': [] }],
-      // ['clean']                                         // remove formatting button
-    ]
-  };
+  onEditorContentChange(content: string): void {
+    this.notesForSelectedTank = content;
+  }
 
 }

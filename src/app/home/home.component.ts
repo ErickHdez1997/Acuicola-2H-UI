@@ -5,8 +5,8 @@ import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/rou
 import { BatchService } from '../services/batch.service';
 import { CommonModule } from '@angular/common';
 import { TankMeasurement } from '../Interfaces/tank-measurement';
-import { TankService } from '../services/tank.service';
-import { FishTank } from '../Interfaces/fish-tank';
+import { UserService } from '../services/user.service';
+import { UserProfileInfoDto } from '../Interfaces/user-profile-info-dto';
 
 @Component({
   selector: 'app-home',
@@ -22,17 +22,30 @@ import { FishTank } from '../Interfaces/fish-tank';
 })
 export class HomeComponent {
 
+  userProfileInfo: UserProfileInfoDto | null = null;
+
   constructor(
     private authService: AuthService, 
-    private tankService: TankService,
+    private userService: UserService,
     private batchService: BatchService, 
     private router: Router,
     private route: ActivatedRoute
-  ) {
+  ) {}
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    console.log()
+    this.userService.fetchUserProfile(this.userService.getUserId()).subscribe((userProfileInfoDto: UserProfileInfoDto) => {
+      this.userProfileInfo = userProfileInfoDto;
+    });
+    this.userService.setUserId(-1);
+    
   }
 
   openManageBatchesComponent() {
-    this.router.navigate(['batches'], {relativeTo: this.route});;
+    console.log(this.userProfileInfo)
+    this.router.navigate(['batches'], {relativeTo: this.route});
   }
 
   // To do

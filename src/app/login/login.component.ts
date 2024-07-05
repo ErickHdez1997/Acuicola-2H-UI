@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 
 import { AuthService } from '../services/auth.service';
 import { SpinnerService } from '../common/spinner.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -33,10 +34,12 @@ export class LoginComponent {
   errorMessage = '';
 
   hidePassword = true;
+  public userId!: number;
 
   constructor(
     private fb: FormBuilder, 
     private authService: AuthService, 
+    private userService: UserService,
     private router: Router,
     private spinnerService: SpinnerService
   ) {
@@ -55,8 +58,8 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value).subscribe({
         next: response => {
           localStorage.setItem('token', response.token);
+          this.userService.setUserId(response.userId);
           this.authService.setAuthenticatedSubject = true;
-          
         },
         error: (error: any) => {
           console.error('Error authenticating user', error);

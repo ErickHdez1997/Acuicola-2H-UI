@@ -52,6 +52,20 @@
   background-color: lightgreen;
 }
 
+.tank-summary, .notes {
+  flex: 1;
+  /* height: 100%; */
+  height: auto;
+  padding: 10px;
+}
+
+.NgxEditor__Wrapper {
+  max-height: 200px; /* Set your desired maximum height */
+  overflow-y: auto; /* Make the editor scrollable */
+  border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+  padding: 10px; /* Optional: Add padding for better readability */
+}
+
 .divider {
   width: 100%;
 }

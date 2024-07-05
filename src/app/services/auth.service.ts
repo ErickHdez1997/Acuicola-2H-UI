@@ -9,8 +9,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
 
-  // private isAuthenticated = false;
-
   private isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient, private router: Router) { }
