@@ -1,6 +1,6 @@
 <div class="container">
   <div class="left-div" id="leftDiv">
-    <div class="div-header">Tanks</div>
+    <div class="div-header">All Tanks</div>
     <hr class="divider" aria-label="Divider">
     <div class="grid-container">
       <ng-container *ngFor="let tank of allFishTanks; let i = index">
@@ -18,20 +18,23 @@
       <div class="div-header">Farm Summary</div>
       <hr class="divider" aria-label="Divider">
       <!--Farm Summary Stuff-->
+      <div>
+        <p>Active Batches: {{ activeBatches.length }}</p>
+      </div>
     </div>
     <div *ngIf="showBatchSummary">
       <div class="div-header">Tank Summary</div>
       <hr class="divider" aria-label="Divider">
       <!--Tank Summary Stuff-->
       <div>
-        <h2>Tank #: {{ selectedBatch?.fishTankId }} - Batch #: {{ selectedBatch?.id }}</h2>
+        <h2>Tank #: {{ selectedBatch?.fishTankId }} - Batch ID: {{ selectedBatch?.id }}</h2>
         <p>Batch Start Date: {{ selectedBatch?.startDate }}</p>
         <p>Fish Planted: {{ selectedBatch?.fishPlanted }}</p>
         <p>Total Fish Dead: {{ totalFishDeadForSelectedBatch }}</p>
       </div>
       <div class="notes">
-        <h3>Notes</h3>
-        <textarea [(ngModel)]="notesForSelectedTank" rows="10" cols="50"></textarea>
+        <h3>Quick Notes</h3>
+        <textarea [(ngModel)]="notesForSelectedTank"></textarea>
         <button class="button" mat-raised-button color="primary" (click)="saveNotes(notesForSelectedTank)">Save Notes</button>
       </div>
     </div>
@@ -82,7 +85,7 @@
         <td mat-cell *matCellDef="let row"> {{row.turbine}} </td>
       </ng-container>
       <ng-container matColumnDef="alkalinity">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> alkalinity </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Alkalinity </th>
         <td mat-cell *matCellDef="let row"> {{row.alkalinity}} </td>
       </ng-container>
       <ng-container matColumnDef="deaths">
