@@ -68,10 +68,6 @@ export class SummaryComponent {
     });
   }
 
-  ngAfterViewInit(): void {
-    this.setRightDivHeight();
-  }
-
   selectBatch(fishTank: FishTank): void {
     this.selectedFishTank = fishTank;
     if (this.selectedBatch?.id === fishTank.activeBatchId) {
@@ -95,7 +91,6 @@ export class SummaryComponent {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-    this.setRightDivHeight();
   }
 
   saveNotes(notes: string): void {
@@ -110,14 +105,14 @@ export class SummaryComponent {
     }
   }
 
-  setRightDivHeight(): void {
-    setTimeout(() => {
-      const leftDiv = this.el.nativeElement.querySelector('#leftDiv');
-      const rightDiv = this.el.nativeElement.querySelector('#rightDiv');
-      const leftDivHeight = leftDiv.offsetHeight;
-      this.renderer.setStyle(rightDiv, 'height', `${leftDivHeight}px`);
-    }, 10);
-  }
+  // setRightDivHeight(): void {
+  //   setTimeout(() => {
+  //     const leftDiv = this.el.nativeElement.querySelector('#leftDiv');
+  //     const rightDiv = this.el.nativeElement.querySelector('#rightDiv');
+  //     const leftDivHeight = leftDiv.offsetHeight;
+  //     this.renderer.setStyle(rightDiv, 'height', `${leftDivHeight}px`);
+  //   }, 10);
+  // }
 
 // Paginator used for sorting
   applyFilter(event: Event) {

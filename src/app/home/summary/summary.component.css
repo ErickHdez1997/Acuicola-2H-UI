@@ -32,7 +32,7 @@
   gap: 10px; /* Adjust the gap as needed */
 }
 
-button {
+.tank-button {
   padding: 5px;
   width: 100px; /* Adjust the size as needed */
   height: 100px; /* Adjust the size as needed */
@@ -57,7 +57,7 @@ button {
 }
 
 .notes {
-
+  margin-top: 20px;
 }
 
 .header-row {

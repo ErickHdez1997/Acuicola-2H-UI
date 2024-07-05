@@ -4,10 +4,10 @@
     <hr class="divider" aria-label="Divider">
     <div class="grid-container">
       <ng-container *ngFor="let tank of allFishTanks; let i = index">
-        <button *ngIf="tank.activeBatchId != null" mat-raised-button color="primary" (click)="selectBatch(tank)">
+        <button class="tank-button" *ngIf="tank.activeBatchId != null" mat-raised-button color="primary" (click)="selectBatch(tank)">
           Tank #: {{ tank.id }} <br> Batch ID: {{ tank.activeBatchId }}
         </button>
-        <button *ngIf="tank.activeBatchId == null" mat-raised-button mat-color="primary" disabled>
+        <button class="tank-button" *ngIf="tank.activeBatchId == null" mat-raised-button mat-color="primary" disabled>
           Tank #: {{ tank.id }} <br> Batch ID: NA
         </button>
       </ng-container>
@@ -32,7 +32,7 @@
       <div class="notes">
         <h3>Notes</h3>
         <textarea [(ngModel)]="notesForSelectedTank" rows="10" cols="50"></textarea>
-        <button mat-raised-button color="primary" (click)="saveNotes(notesForSelectedTank)">Save Notes</button>
+        <button class="button" mat-raised-button color="primary" (click)="saveNotes(notesForSelectedTank)">Save Notes</button>
       </div>
     </div>
   </div>
