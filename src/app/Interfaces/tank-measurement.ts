@@ -1,6 +1,5 @@
 export interface TankMeasurement {
-    id: number;
-    batchId: number;
+    id: MeasurementId;
     fishTankId: number;
     oxygen: number;
     ph: number;
@@ -13,4 +12,9 @@ export interface TankMeasurement {
     alkalinity: number;
     deaths: number;
     date: string;
+}
+
+export interface MeasurementId {
+    measurementId: number;
+    batchId: number;
 }

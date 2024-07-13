@@ -50,14 +50,15 @@
 
 <hr class="divider" aria-label="Divider">
   
-  <div class="mat-elevation-z8" *ngIf="showBatchDetails">
+  <!-- <div class="mat-elevation-z8" *ngIf="showBatchDetails"> -->
+    <div class="mat-elevation-z8" [hidden]="!showBatchDetails">
     <table mat-table [dataSource]="dataSource" matSort class="rounded-table">
       <ng-container matColumnDef="title">
         <th class="header-row" mat-header-cell colspan="12" *matHeaderCellDef> Tank #{{ selectedBatch?.fishTankId }} </th>
       </ng-container>
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Entry Id </th>
-        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.id.measurementId}} </td>
       </ng-container>
       <ng-container matColumnDef="oxygen">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Oxygen </th>
@@ -108,4 +109,5 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
-    <mat-paginator class="rounded-paginator" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator class="rounded-paginator" [pageSizeOptions]="[5, 10, 25, 100]" [showFirstLastButtons]="true"></mat-paginator>
+  </div>

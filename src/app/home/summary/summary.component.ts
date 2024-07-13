@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { MatButtonModule } from '@angular/material/button';
@@ -43,18 +43,14 @@ export class SummaryComponent {
   displayedColumns: string[] = ['id', 'oxygen', 'temperature', 'ph', 'salinity', 'nitrate', 'nitrite', 
     'ammonia', 'turbine', 'alkalinity', 'deaths','date'];
 
-  dataSource: MatTableDataSource<TankMeasurement>;
-  @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  dataSource: MatTableDataSource<TankMeasurement> = new MatTableDataSource();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    private el: ElementRef,
-    private renderer: Renderer2,
     private batchService: BatchService,
     private tankService: TankService
-  ) {
-    this.dataSource = new MatTableDataSource();
-    this.sort = new MatSort;
+  ) { 
   }
 
   editor!: Editor;
@@ -75,10 +71,8 @@ export class SummaryComponent {
       console.log(fishTanks)
       this.allFishTanks = fishTanks;
     });
-
     this.batchService.getActiveBatches().subscribe((batches: Batch[]) => {
       console.log(batches)
-      console.log(batches[0])
       this.activeBatches = batches;
     });
     this.editor = new Editor();
@@ -110,36 +104,37 @@ export class SummaryComponent {
       this.dataSource = new MatTableDataSource(this.selectedBatch?.measurements);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.sort.sort({ id: 'id', start: 'desc', disableClear: true });
+      this.sort.sortChange.subscribe(() => {
+        this.dataSource.sortingDataAccessor = (data, sortHeaderId) => {
+          switch (sortHeaderId) {
+            case 'id': return data.id.measurementId;
+            case 'oxygen': return data.oxygen;
+            case 'temperature': return data.temperature;
+            case 'ph': return data.ph;
+            case 'salinity': return data.salinity;
+            case 'nitrate': return data.nitrate;
+            case 'nitrite': return data.nitrite;
+            case 'ammonia': return data.ammonia;
+            case 'turbine': return data.turbine;
+            case 'alkalinity': return data.alkalinity;
+            case 'deaths': return data.deaths;
+            case 'date': return data.date;
+            default: return '';
+          }
+        };
+      });
+      this.dataSource.data = this.dataSource.data.sort((a, b) => (a.id.measurementId > b.id.measurementId ? -1 : 1));
     });
   }
 
   saveNotes(notes: string): void {
-    console.log('here 1')
     if (this.selectedFishTank) {
-      console.log('here 2')
       this.selectedFishTank.tankNotes = notes;
       this.tankService.saveNotes(this.selectedFishTank).subscribe((response: FishTank | null) => {
         //to do - implement a screen message
         console.log('notes saves successfully: ', response);
       });
-    }
-  }
-
-  // setRightDivHeight(): void {
-  //   setTimeout(() => {
-  //     const leftDiv = this.el.nativeElement.querySelector('#leftDiv');
-  //     const rightDiv = this.el.nativeElement.querySelector('#rightDiv');
-  //     const leftDivHeight = leftDiv.offsetHeight;
-  //     this.renderer.setStyle(rightDiv, 'height', `${leftDivHeight}px`);
-  //   }, 10);
-  // }
-
-  // Paginator used for sorting
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
     }
   }
 
