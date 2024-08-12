@@ -22,7 +22,7 @@ bootstrapApplication(AppComponent,
         BrowserAnimationsModule,
         ReactiveFormsModule
       ),
-      AuthService, provideAnimationsAsync()
+      AuthService, provideAnimationsAsync(), provideAnimationsAsync()
     ]
   })
   .catch((err) => console.error(err));

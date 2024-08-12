@@ -41,7 +41,6 @@
 
 .left-div, .right-div {
   flex: 1;
-  /* height: 100%; */
   height: auto;
   padding: 10px;
 }
@@ -54,16 +53,19 @@
 
 .tank-summary, .notes {
   flex: 1;
-  /* height: 100%; */
   height: auto;
   padding: 10px;
 }
 
 .NgxEditor__Wrapper {
-  max-height: 200px; /* Set your desired maximum height */
-  overflow-y: auto; /* Make the editor scrollable */
-  border: 1px solid #ccc; /* Optional: Add a border for better visibility */
-  padding: 10px; /* Optional: Add padding for better readability */
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+::ng-deep .mat-sort-header-container {
+  justify-content: center;
 }
 
 .divider {
@@ -74,14 +76,20 @@
   margin-top: 20px;
 }
 
+.mat-mdc-cell {
+  text-align: center;
+}
+
 .header-row {
   text-align: center;
   font-weight: bold;
   font-size: x-large;
+  padding: 0 !important;
 }
 
 .mat-elevation-z8 {
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .rounded-table {
@@ -98,4 +106,43 @@ textarea {
   width: 100%;
   min-height: 200px;
   height: 200px;
+}
+
+.button-container {
+  position: relative;
+  width: 100%;
+  height: 48px; /* Adjust this value based on your button height */
+}
+
+.add-button {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.remove-button {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tank-number {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mat-mdc-header-row {
+  height: auto !important;
+}
+
+.mat-column-select {
+  overflow: initial;
+}
+
+table {
+  width: 100%;
 }

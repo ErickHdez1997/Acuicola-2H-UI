@@ -49,12 +49,25 @@
 </div>
 
 <hr class="divider" aria-label="Divider">
-  
-  <!-- <div class="mat-elevation-z8" *ngIf="showBatchDetails"> -->
     <div class="mat-elevation-z8" [hidden]="!showBatchDetails">
     <table mat-table [dataSource]="dataSource" matSort class="rounded-table">
       <ng-container matColumnDef="title">
-        <th class="header-row" mat-header-cell colspan="12" *matHeaderCellDef> Tank #{{ selectedBatch?.fishTankId }} </th>
+        <th class="header-row" mat-header-cell [attr.colspan]="displayedColumns.length" *matHeaderCellDef> 
+          <div class="button-container">
+            <span class="add-button">
+              <button mat-raised-button color="primary" 
+              (click)="addData()">Add Entry</button>
+            </span>
+            <span class="tank-number">
+              Tank #{{ selectedBatch?.fishTankId }} 
+            </span>
+            <span class="remove-button">
+              <button mat-raised-button color="warn" 
+              (click)="removeData()" 
+              [disabled]="!selection.hasValue()">Remove Entries</button>
+            </span>
+          </div>
+        </th>
       </ng-container>
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Entry Id </th>
@@ -104,6 +117,19 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date - Time </th>
         <td mat-cell *matCellDef="let row"> {{row.date.substring(0, 10)}} - {{row.date.substring(11, 19)}} </td>
       </ng-container>
+
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Select </th>
+        <td mat-cell *matCellDef="let row" style="text-align: center;">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)"
+                        [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
       <!-- Data -->
       <tr mat-header-row *matHeaderRowDef="['title']"></tr>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

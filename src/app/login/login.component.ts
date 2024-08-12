@@ -68,7 +68,7 @@ export class LoginComponent {
           this.spinnerService.hideSpinner();
         },
         complete: () => {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/home/summary']);
           this.spinnerService.hideSpinner();
         }
       });
