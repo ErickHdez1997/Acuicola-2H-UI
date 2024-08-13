@@ -4,8 +4,13 @@ html,
 body { 
     margin: 0; 
     height: 100%;
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    // font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background: radial-gradient(circle, #7FB3A4, #E0E5E9);
 }
+
+body, h1, h2, h3, h4, h5, h6, p, a, li, button {
+    font-family: 'Bradley Hand', "Georgia", "Times New Roman", serif !important;
+  }
 
 .mat-mdc-raised-button {
     margin-left: 10px;

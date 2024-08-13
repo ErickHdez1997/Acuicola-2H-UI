@@ -1,39 +1,41 @@
 <h2 mat-dialog-title>Add New Measurement</h2>
-    <mat-dialog-content>
-      <form [formGroup]="measurementForm">
-        <mat-form-field>
-          <input matInput placeholder="Oxygen" formControlName="oxygen" type="number">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Temperature" formControlName="temperature" type="number">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="pH" formControlName="ph" type="number">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Salinity" formControlName="salinity" type="number">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Nitrate" formControlName="nitrate" type="number">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Nitrite" formControlName="nitrite" type="number">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Ammonia" formControlName="ammonia" type="number">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Turbine" formControlName="turbine" type="number">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Alkalinity" formControlName="alkalinity" type="number">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Fish Deaths" formControlName="deaths" type="number">
-        </mat-form-field>
-      </form>
-    </mat-dialog-content>
-    <mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">Cancel</button>
-      <button mat-button [disabled]="!measurementForm.valid" (click)="onSubmit()">Add</button>
-    </mat-dialog-actions>
+<mat-dialog-content>
+  <form [formGroup]="measurementForm">
+    <div class="form-grid">
+      <mat-form-field>
+        <input matInput placeholder="Oxygen" formControlName="oxygen" type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Temperature" formControlName="temperature" type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="pH" formControlName="ph" type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Salinity" formControlName="salinity" type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Nitrate" formControlName="nitrate" type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Nitrite" formControlName="nitrite" type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Ammonia" formControlName="ammonia" type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Turbine" formControlName="turbine" type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Alkalinity" formControlName="alkalinity" type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Fish Deaths" formControlName="deaths" type="number">
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button [disabled]="!measurementForm.valid" (click)="onSubmit()">Add</button>
+</mat-dialog-actions>

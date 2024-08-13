@@ -1,54 +1,52 @@
 <div class="container">
-  <div class="left-div" id="leftDiv">
-    <div class="div-header">All Tanks</div>
-    <hr class="divider" aria-label="Divider">
-    <div class="grid-container">
-      <ng-container *ngFor="let tank of allFishTanks; let i = index">
-        <button class="tank-button" *ngIf="tank.activeBatchId != null" mat-raised-button color="primary" (click)="selectBatch(tank)">
-          Tank #: {{ tank.id }} <br> Batch ID: {{ tank.activeBatchId }}
-        </button>
-        <button class="tank-button" *ngIf="tank.activeBatchId == null" mat-raised-button mat-color="primary" disabled>
-          Tank #: {{ tank.id }} <br> Batch ID: NA
-        </button>
-      </ng-container>
-    </div>
-  </div>
-  <div class="right-div" id="rightDiv">
-    <div *ngIf="!showBatchSummary">
-      <div class="div-header">Farm Summary</div>
+  <div class="inner-container">
+    <div class="left-div" id="leftDiv">
+      <div class="div-header">All Tanks</div>
       <hr class="divider" aria-label="Divider">
-      <!--Farm Summary Stuff-->
-      <div>
-        <p>Active Batches: {{ activeBatches.length }}</p>
+      <div class="grid-container">
+        <ng-container *ngFor="let tank of allFishTanks; let i = index">
+          <button class="tank-button" *ngIf="tank.activeBatchId != null" mat-raised-button color="primary" (click)="selectBatch(tank)">
+            Tank #: {{ tank.id }} <br> Batch ID: {{ tank.activeBatchId }}
+          </button>
+          <button class="tank-button" *ngIf="tank.activeBatchId == null" mat-raised-button mat-color="primary" disabled>
+            Tank #: {{ tank.id }} <br> Batch ID: NA
+          </button>
+        </ng-container>
       </div>
     </div>
-    <div *ngIf="showBatchSummary">
-      <div class="div-header">Tank Summary</div>
-      <hr class="divider" aria-label="Divider">
-      <h2>Tank #: {{ selectedBatch?.fishTankId }} - Batch ID: {{ selectedBatch?.id }}</h2>
-      <div class="container">
-        <!--Tank Summary Stuff-->
-        <div class="tank-summary">
-          
-          <p>Batch Start Date: {{ selectedBatch?.startDate }}</p>
-          <p>Fish Planted: {{ selectedBatch?.fishPlanted }}</p>
-          <p>Total Fish Dead: {{ totalFishDeadForSelectedBatch }}</p>
+    <div class="right-div" id="rightDiv">
+      <div *ngIf="!showBatchSummary">
+        <div class="div-header">Farm Summary</div>
+        <!-- <hr class="divider" aria-label="Divider"> -->
+        <!--Farm Summary Stuff-->
+        <div>
+          <p>Active Batches: {{ activeBatches.length }}</p>
         </div>
-        <div class="notes">
-          <h3>Quick Notes</h3>
-          <!-- <textarea [(ngModel)]="notesForSelectedTank"></textarea> -->
-          <div class="NgxEditor__Wrapper">
-            <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
-            <ngx-editor [editor]="editor" [(ngModel)]="notesForSelectedTank" [disabled]="false"></ngx-editor>
+      </div>
+      <div *ngIf="showBatchSummary">
+        <div class="div-header">Tank Summary</div>
+        <hr class="divider" aria-label="Divider">
+        <h2>Tank #: {{ selectedBatch?.fishTankId }} - Batch ID: {{ selectedBatch?.id }}</h2>
+        <div class="inner-container">
+          <!--Tank Summary Stuff-->
+          <div class="tank-summary">
+            <p>Batch Start Date: {{ selectedBatch?.startDate }}</p>
+            <p>Fish Planted: {{ selectedBatch?.fishPlanted }}</p>
+            <p>Total Fish Dead: {{ totalFishDeadForSelectedBatch }}</p>
           </div>
-          <button class="button" mat-raised-button color="primary" (click)="saveNotes(notesForSelectedTank)">Save Notes</button>
+          <div class="notes">
+            <h3>Quick Notes</h3>
+            <div class="NgxEditor__Wrapper">
+              <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+              <ngx-editor [editor]="editor" [(ngModel)]="notesForSelectedTank" [disabled]="false"></ngx-editor>
+            </div>
+            <button class="button" mat-raised-button color="primary" (click)="saveNotes(notesForSelectedTank)">Save Notes</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
-<hr class="divider" aria-label="Divider">
+  <!-- <hr class="divider" aria-label="Divider"> -->
     <div class="mat-elevation-z8" [hidden]="!showBatchDetails">
     <table mat-table [dataSource]="dataSource" matSort class="rounded-table">
       <ng-container matColumnDef="title">
@@ -137,3 +135,4 @@
     </table>
     <mat-paginator class="rounded-paginator" [pageSizeOptions]="[5, 10, 25, 100]" [showFirstLastButtons]="true"></mat-paginator>
   </div>
+</div>
