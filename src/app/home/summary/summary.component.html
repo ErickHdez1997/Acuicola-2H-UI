@@ -23,11 +23,10 @@
           <p>Active Batches: {{ activeBatches.length }}</p>
         </div>
       </div>
-      <div *ngIf="showBatchSummary">
-        <div class="div-header">Tank Summary</div>
+      <div *ngIf="showBatchSummary" class="batch-summary">
+        <div class="div-header">Tank #: {{ selectedBatch?.fishTankId }} - Batch ID: {{ selectedBatch?.id }}</div>
         <hr class="divider" aria-label="Divider">
-        <h2>Tank #: {{ selectedBatch?.fishTankId }} - Batch ID: {{ selectedBatch?.id }}</h2>
-        <div class="inner-container">
+        <div class="summary-container">
           <!--Tank Summary Stuff-->
           <div class="tank-summary">
             <p>Batch Start Date: {{ selectedBatch?.startDate }}</p>
