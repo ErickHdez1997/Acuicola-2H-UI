@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TankMeasurement } from '../Interfaces/tank-measurement';
 import { CreateBatchDto } from '../Interfaces/create-batch-dto';
+import { FishTank } from '../Interfaces/fish-tank';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,10 @@ export class BatchService {
 
   createTestData(): Observable<TankMeasurement[]> {
     return this.http.get<TankMeasurement[]>(`http://localhost:8080/tank/createTestTank`);
+  }
+
+  saveBatchNotes(batch: Batch): Observable<Batch> {
+    console.log('batch: ', batch)
+    return this.http.post<Batch>(`${this.apiUrl}/saveBatchNotes`, batch);
   }
 }

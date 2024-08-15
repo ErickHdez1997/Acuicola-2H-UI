@@ -1,9 +1,9 @@
-import { FishTank } from "./fish-tank";
 import { TankMeasurement } from "./tank-measurement";
 
 export interface Batch {
     id: number;
     fishTankId: number;
+    batchNotes: string;
     startDate: string;
     endDate: string;
     inProgress: boolean;

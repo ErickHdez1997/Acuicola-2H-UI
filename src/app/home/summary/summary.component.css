@@ -24,10 +24,8 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 100%;
-  /*gap: 20px; /* Add space between left and right divs */
-  /*padding-top: 20px; /* Add some padding around the container */
-  /*padding-bottom: 20px; /* Add some padding around the container */
+  height: 84%;
+  display: flex;
 }
 
 .div-header {
@@ -57,6 +55,8 @@
 
 .left-div, .right-div {
   flex: 1;
+  flex-basis: 50%; /* Each container takes up 50% of the width by default */
+  max-width: 50%; /* Ensure they don’t grow beyond 50% of the parent's width */
   height: auto;
   padding: 20px;
   border-radius: 10px; /* Rounded corners */
@@ -66,7 +66,7 @@
 
 .batch-summary {
   flex: 1;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   height: 100%;
 }
@@ -77,10 +77,17 @@
   flex-shrink: 0; /* Prevent this from shrinking */
 }
 
+.tank-summary {
+  flex-basis: 30%;
+}
+
 .notes {
   height: 100%; /* Add this line */
   display: flex; /* Add this line */
+  flex-basis: 70%; /* Each container takes up 50% of the width by default */
+  max-width: 65%; /* Ensure they don’t grow beyond 50% of the parent's width */
   flex-direction: column; /* Add this line */
+  align-items: center;
 }
 
 .NgxEditor__Wrapper {
@@ -88,6 +95,10 @@
   display: flex; /* Add this line */
   flex-direction: column; /* Add this line */
   margin-bottom: 10px;
+  max-width: 100%;
+  height: 300px;
+  max-height: 300px;
+  width: 100%;
 }
 
 .NgxEditor__Wrapper > * {
@@ -96,23 +107,36 @@
 
 ngx-editor[ng-reflect-editor] {
   height: 100% !important;
-  overflow-y: auto;
+  overflow-y: hidden;
+  overflow-x: hidden; /* Hide horizontal overflow */
+  max-width: 100%;
 }
 
 .NgxEditor__Wrapper > .NgxEditor {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 ::ng-deep .NgxEditor, ::ng-deep .NgxEditor__Content {
   height: 100%;
+  overflow-y: hidden; /* Hide horizontal overflow */
+  overflow-x: hidden; /* Hide horizontal overflow */
+  max-width: 100%;
+}
+
+::ng-deep .NgxEditor__Content {
+  overflow-y: auto !important; /* Hide horizontal overflow */
 }
 
 [contenteditable="true"] {
   height: 100%;
   min-height: 100px; /* Set a minimum height if desired */
+  white-space: pre-wrap; /* Preserves whitespace but wraps text */
+  word-wrap: break-word; /* Break long words onto the next line */
+  overflow-wrap: break-word; /* Ensures words break if necessary */
+  overflow-y: auto; /* Hide horizontal overflow */
 }
 
 .NgxEditor__Wrapper > .NgxEditor > .NgxEditor__Content {
@@ -126,6 +150,8 @@ ngx-editor[ng-reflect-editor] {
 
 .divider {
   width: 100%;
+  height: 1px; /* Adjust this value to make it thicker */
+  background-color: black; /* Set the color of the divider */
 }
 
 .mat-mdc-cell {
@@ -153,12 +179,18 @@ ngx-editor[ng-reflect-editor] {
 .rounded-paginator {
   border-radius: 0 0 10px 10px;
   overflow: hidden;
+  background-color: #bfd6d4;
 }
 
 textarea {
   width: 100%;
   min-height: 200px;
   height: 200px;
+}
+
+.button {
+  position: relative;
+  width: 30%;
 }
 
 .button-container {
@@ -198,6 +230,7 @@ textarea {
 
 table {
   width: 100%;
+  background-color: #bfd6d4;
 }
 
 /* :root {

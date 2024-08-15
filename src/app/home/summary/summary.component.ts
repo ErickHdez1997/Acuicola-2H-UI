@@ -7,11 +7,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { BatchService } from '../../services/batch.service';
-import { MeasurementId, TankMeasurement } from '../../Interfaces/tank-measurement';
+import { TankMeasurement } from '../../Interfaces/tank-measurement';
 import { Batch } from '../../Interfaces/batch';
 import { TankService } from '../../services/tank.service';
 import { FishTank } from '../../Interfaces/fish-tank';
-import { Editor, NgxEditorModule } from 'ngx-editor';
+import { Editor, NgxEditorConfig, NgxEditorModule, toDoc, toHTML, Toolbar } from 'ngx-editor';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MeasurementService } from '../../services/measurement.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -39,7 +39,7 @@ export class SummaryComponent {
 
   allFishTanks: FishTank[] = [];
   selectedFishTank: FishTank | null = null;
-  notesForSelectedTank: string = '';
+  notesForSelectedBatch: string = '';
 
   activeBatches: Batch[] = [];
   selectedBatch: Batch | null = null;
@@ -65,6 +65,15 @@ export class SummaryComponent {
   ) { }
 
   editor!: Editor;
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right'],
+  ];
   html = '';
 
   ngOnInit(): void {
@@ -86,15 +95,15 @@ export class SummaryComponent {
   selectBatch(fishTank: FishTank): void {
     this.selectedFishTank = fishTank;
     if (this.selectedBatch?.id === fishTank.activeBatchId) {
-      this.notesForSelectedTank = '';
+      this.notesForSelectedBatch = '';
       this.showBatchSummary = false
       this.showBatchDetails = false;
       this.selectedBatch = null;
       return;
     }
     this.totalFishDeadForSelectedBatch = 0;
-    this.notesForSelectedTank = fishTank.tankNotes;
     this.batchService.getBatchById(fishTank.activeBatchId).subscribe((batch: Batch | null) => {
+      this.notesForSelectedBatch = this.convertHTMLToDoc(batch?.batchNotes ?? '');
       this.showBatchSummary = true;
       this.showBatchDetails = true;
       console.log(batch)
@@ -219,19 +228,31 @@ export class SummaryComponent {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id.measurementId + 1}`;
   }
 
-  saveNotes(notes: string): void {
-    if (this.selectedFishTank) {
-      this.selectedFishTank.tankNotes = notes;
-      this.tankService.saveNotes(this.selectedFishTank).subscribe((response: FishTank | null) => {
+  saveBatchNotes(): void {
+    const doc = this.notesForSelectedBatch;
+    const htmlContent = this.convertDocToHTML(doc);
+    console.log(htmlContent)
+    if (this.selectedBatch) {
+      this.selectedBatch.batchNotes = htmlContent;
+      this.batchService.saveBatchNotes(this.selectedBatch).subscribe((response: Batch | null) => {
         //to do - implement a screen message
         console.log('notes saves successfully: ', response);
       });
     }
   }
 
+  convertDocToHTML(doc: any): string {
+    // Convert the ProseMirror doc to HTML using ngx-editor's `toHTML` function
+    return toHTML(doc, this.editor.schema);
+  }
+
+  convertHTMLToDoc(html: string): any {
+    return toDoc(html);
+  }
+
   // Text Box Configuration
   onEditorContentChange(content: string): void {
-    this.notesForSelectedTank = content;
+    this.notesForSelectedBatch = content;
   }
 
 }
